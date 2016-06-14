@@ -3,6 +3,7 @@ console.log("iniciando pagina");
 
 function initPage() {
     document.getElementById("username").onblur = checkUsername;
+    document.getElementById("register").disabled = true;
 
     //Debug simples para testar o evento
 //    alert("Estou em init page");
@@ -57,10 +58,14 @@ function showUsernameStatus() {
                 // se não tiver pego o usuário, mostra CHECK
                 // Seta o ícone de status da requisição
                 document.getElementById("username").className = "approved";
+                document.getElementById("register").disabled = false;
             } else {
                 
                 // Seta o ícone de status da requisição
                 document.getElementById("username").className = "denied";
+                document.getElementById("username").focus();
+                document.getElementById("username").select();
+                document.getElementById("register").disabled = true;
             }
         }
     }
