@@ -12,6 +12,9 @@ function initPage() {
 //Busca no servidor o usuário
 function checkUsername() {
 
+    // Seta o ícone de status da requisição - Processando
+    document.getElementById("username").className = "thinking";
+
     //Cria request object criado em utils.js
     request = createRequest();
 
@@ -42,19 +45,22 @@ function checkUsername() {
  para mostrar se * o usuário já existe ou não 
  */
 function showUsernameStatus() {
-    
+
     // Debug não invasivo
-    console.log('Checando...');
-    console.log("Ready State: " + request.readyState);
-    console.log("Status: " + request.status);
-    
+//    console.log('Checando...');
+//    console.log("Ready State: " + request.readyState);
+//    console.log("Status: " + request.status);
+
     if (request.readyState == 4) {
         if (request.status == 200) {
             if (request.responseText == "okay") {
                 // se não tiver pego o usuário, mostra CHECK
+                // Seta o ícone de status da requisição
+                document.getElementById("username").className = "approved";
             } else {
-                // senão, mostra erro para o usuário
-                alert("Sorry, username já em uso!");
+                
+                // Seta o ícone de status da requisição
+                document.getElementById("username").className = "denied";
             }
         }
     }
